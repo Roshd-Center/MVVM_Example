@@ -9,10 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import com.example.mvvmexample.R
-import com.example.mvvmexample.data.MainRepository
-import com.example.mvvmexample.data.remote.AppService
+import com.example.mvvmexample.data.TrashRepository
+import com.example.mvvmexample.data.local.db.AppDatabase
+import com.example.mvvmexample.data.remote.api.TrashService
 import com.example.mvvmexample.databinding.FragmentMainBinding
 import com.example.mvvmexample.ui.MyViewModelFactory
 
@@ -31,15 +30,11 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.e("TEST", "Before viewmodel provider")
-
-        val retrofitService = AppService.getInstance()
-        val mainRepository = MainRepository(retrofitService)
+        val mainRepository = TrashRepository(TrashService.getInstance(),
+            AppDatabase.getInstance(requireContext()).trashDao())
 
         mainViewModel =
             ViewModelProvider(this, MyViewModelFactory(mainRepository)).get(MainViewModel::class.java)
-        Log.e("TEST", "After viewmodel provider")
-
 
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -56,7 +51,7 @@ class MainFragment : Fragment() {
         mainViewModel.trashList.observe(viewLifecycleOwner, {
 
             adapter.setTrashes(it)
-            TODO("Not Working!")
+//            TODO("Not Working!")
         })
 
         mainViewModel.errorMessage.observe(viewLifecycleOwner, {

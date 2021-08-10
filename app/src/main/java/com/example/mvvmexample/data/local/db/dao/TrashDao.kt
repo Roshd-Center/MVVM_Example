@@ -13,5 +13,5 @@ interface TrashDao {
     fun getTrashes(): LiveData<List<Trash>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addTrash(vararg trash: Trash): LiveData<List<Trash>>
+    fun addTrash(vararg trash: Trash)
 }

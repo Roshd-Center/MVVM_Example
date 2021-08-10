@@ -1,6 +1,7 @@
 package com.example.mvvmexample.data.remote.api
 
-import com.example.mvvmexample.MyApplication.Companion.BASE_URL
+import com.example.mvvmexample.data.remote.RetroInstance.Companion.BASE_URL
+
 
 const val API_VERSION = "v1"
 

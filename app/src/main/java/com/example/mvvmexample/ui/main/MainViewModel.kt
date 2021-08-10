@@ -1,13 +1,12 @@
 package com.example.mvvmexample.ui.main
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mvvmexample.data.MainRepository
+import com.example.mvvmexample.data.TrashRepository
 import com.example.mvvmexample.data.models.db.Trash
 import kotlinx.coroutines.*
 
-class MainViewModel constructor(private val mainRepository: MainRepository) : ViewModel() {
+class MainViewModel constructor(private val mainRepository: TrashRepository) : ViewModel() {
 
     val errorMessage = MutableLiveData<String>()
     val trashList = MutableLiveData<List<Trash>>()
