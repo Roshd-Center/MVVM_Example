@@ -68,6 +68,10 @@ class MainFragment : Fragment() {
         binding.refreshBtn.setOnClickListener {
             mainViewModel.refreshTrashes()
         }
+        binding.trimBtn.setOnClickListener {
+            mainViewModel.trimTrashes()
+        }
+
 
         return root
     }

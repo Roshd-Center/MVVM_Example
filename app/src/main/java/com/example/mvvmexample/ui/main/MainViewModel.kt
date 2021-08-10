@@ -19,6 +19,7 @@ class MainViewModel constructor(private val trashRepository: TrashRepository) : 
     val loading = MutableLiveData<Boolean>()
 
     fun refreshTrashes() {
+        loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response = trashRepository.getTrashes()
             withContext(Dispatchers.IO) {
@@ -33,6 +34,12 @@ class MainViewModel constructor(private val trashRepository: TrashRepository) : 
             }
         }
 
+    }
+
+    public fun trimTrashes(){
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+            trashRepository.trimDbTrashes()
+        }
     }
 
     private fun onError(message: String) {

@@ -20,4 +20,10 @@ class TrashRepository constructor(private val service: TrashService, private val
         dao.addTrash(*trashes.toTypedArray())
     }
 
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun trimDbTrashes(){
+        dao.trimTrashes()
+    }
+
 }
