@@ -1,10 +1,7 @@
 package com.example.mvvmexample.data.local.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.mvvmexample.data.models.db.Trash
 
 @Dao
@@ -14,4 +11,7 @@ interface TrashDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addTrash(vararg trash: Trash)
+
+    @Query("DELETE FROM trash")
+    fun trimTrashes()
 }

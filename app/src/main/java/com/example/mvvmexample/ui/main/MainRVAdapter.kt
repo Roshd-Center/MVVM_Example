@@ -38,7 +38,6 @@ class MainRVAdapter: Adapter<MainRVViewHolder>() {
         this.trashes.clear()
         this.trashes.addAll(trashes)
         Log.e("TEST setTrashes", trashes.size.toString())
-//        TODO("Not working!")
         notifyDataSetChanged()
 //        notifyItemRangeInserted(0,trashes.size)
     }

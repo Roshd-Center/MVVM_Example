@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmexample.data.TrashRepository
 import com.example.mvvmexample.data.local.db.AppDatabase
 import com.example.mvvmexample.data.remote.api.TrashService
@@ -47,10 +46,10 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
 
-        mainViewModel.trashList.observe(viewLifecycleOwner, {
+        mainViewModel.trashList.value?.let { adapter.setTrashes(it) }
 
+        mainViewModel.trashList.observe(viewLifecycleOwner, {
             adapter.setTrashes(it)
-//            TODO("Not Working!")
         })
 
         mainViewModel.errorMessage.observe(viewLifecycleOwner, {
@@ -66,7 +65,7 @@ class MainFragment : Fragment() {
             }
         })
 
-        mainViewModel.getTrashes()
+        mainViewModel.refreshTrashes()
 
         return root
     }
