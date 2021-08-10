@@ -6,12 +6,13 @@ import androidx.lifecycle.liveData
 import com.example.mvvmexample.data.local.db.dao.TrashDao
 import com.example.mvvmexample.data.models.db.Trash
 import com.example.mvvmexample.data.remote.api.TrashService
+import retrofit2.Response
 
 class TrashRepository constructor(private val service: TrashService, private val dao: TrashDao) {
 
     val trashes = dao.getTrashes()
 
-    suspend fun getTrashes() = service.getTrashes()
+    suspend fun getTrashes() : Response<List<Trash>> = service.getTrashes()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

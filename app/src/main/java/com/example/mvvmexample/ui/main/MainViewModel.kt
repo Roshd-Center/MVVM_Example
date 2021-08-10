@@ -21,7 +21,7 @@ class MainViewModel constructor(private val trashRepository: TrashRepository) : 
     fun refreshTrashes() {
         loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = trashRepository.getTrashes()
+            val response = trashRepository.getTrashes() // Response
             withContext(Dispatchers.IO) {
                 if (response.isSuccessful) {
                     response.body()?.let { trashRepository.updateDbTrash(it) }
