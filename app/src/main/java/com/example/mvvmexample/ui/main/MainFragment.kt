@@ -9,6 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmexample.data.TrashRepository
 import com.example.mvvmexample.data.local.db.AppDatabase
 import com.example.mvvmexample.data.remote.api.TrashService
@@ -41,12 +44,8 @@ class MainFragment : Fragment() {
 
         val recyclerView = binding.recyclerView
         recyclerView.adapter = this.adapter
-//        val textView: TextView = binding.textHome
-//        mainViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
-//        lifecycle.addObserver(mainViewModel)
-
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
 
         mainViewModel.trashList.observe(viewLifecycleOwner, {
 
