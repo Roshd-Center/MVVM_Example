@@ -1,6 +1,7 @@
 package com.example.mvvmexample.data.remote.api
 
-const val BASE_URL = "https://api.bazmand.com/"
+import com.example.mvvmexample.MyApplication.Companion.BASE_URL
+
 const val API_VERSION = "v1"
 
 
