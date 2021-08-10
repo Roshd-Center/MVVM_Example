@@ -11,7 +11,7 @@ import com.example.mvvmexample.data.models.db.Trash
 import com.example.mvvmexample.databinding.TrashViewholderBinding
 
 class MainRVAdapter: Adapter<MainRVViewHolder>() {
-    private var trashes = ArrayList<Trash>()
+    public var trashes = ArrayList<Trash>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainRVViewHolder {
         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
@@ -19,7 +19,7 @@ class MainRVAdapter: Adapter<MainRVViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MainRVViewHolder, position: Int) {
-        val trash = trashes.get(position)
+        val trash = trashes[position]
         holder.render(trash)
     }
 
@@ -28,9 +28,11 @@ class MainRVAdapter: Adapter<MainRVViewHolder>() {
     }
 
     public fun setTrashes(trashes:List<Trash>){
-        this.trashes = trashes as ArrayList<Trash>
-        Log.e("TEST setTrashes", trashes.toString())
-        this.notifyDataSetChanged()
+        this.trashes.clear()
+        this.trashes.addAll(trashes)
+        Log.e("TEST setTrashes", trashes.size.toString())
+        TODO("Not working!")
+        this.notifyItemRangeInserted(0,trashes.size)
     }
 
 }

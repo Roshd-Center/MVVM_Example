@@ -56,6 +56,7 @@ class MainFragment : Fragment() {
         mainViewModel.trashList.observe(viewLifecycleOwner, {
 
             adapter.setTrashes(it)
+            TODO("Not Working!")
         })
 
         mainViewModel.errorMessage.observe(viewLifecycleOwner, {
