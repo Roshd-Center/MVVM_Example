@@ -61,11 +61,13 @@ class MainFragment : Fragment() {
             if (it) {
                 binding.progressBar.visibility = View.VISIBLE
             } else {
-                binding.progressBar.visibility = View.GONE
+                binding.progressBar.visibility = View.INVISIBLE
             }
         })
 
-        mainViewModel.refreshTrashes()
+        binding.refreshBtn.setOnClickListener {
+            mainViewModel.refreshTrashes()
+        }
 
         return root
     }
